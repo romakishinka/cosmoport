@@ -241,29 +241,13 @@ public class ShipRestController {
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @RequestMapping(value = "/rest/ships/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Ship> updateShip(@RequestBody Ship ship,
                                            @PathVariable("id") Long id) {
 
         if(id == 0 || id < 0)
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        List <Ship> list = shipService.getAll();             //добавить метод в утилитный класс findShipById
+        List <Ship> list = shipService.getAll();
         List<Long> idList = new ArrayList<>();
         for (Ship s : list) {
             idList.add(s.getId());
@@ -329,26 +313,6 @@ public class ShipRestController {
 
         return new ResponseEntity<>(entity, HttpStatus.OK);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     @RequestMapping(value = "/rest/ships/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Ship> deleteShip(@PathVariable("id") Long id) {
