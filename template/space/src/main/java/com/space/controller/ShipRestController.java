@@ -23,6 +23,14 @@ public class ShipRestController {
 
     private ShipOrder shipOrder;
 
+    @Autowired
+    public ShipRestController(ShipOrder shipOrder) {
+        this.shipOrder = shipOrder;
+    }
+
+
+
+
 
     @RequestMapping(value = "/rest/ships", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<List<Ship>> getShipsList(@RequestParam(value = "name", required = false) String name,
@@ -45,7 +53,7 @@ public class ShipRestController {
 
 
         List <Ship> shipList = shipService.getAll();
-        List <Ship> resultList;  //!
+        List <Ship> resultList;
 
 
         if (name == null && planet == null && shipType == null && isUsed == null && after == null && before == null) {
